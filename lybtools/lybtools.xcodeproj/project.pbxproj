@@ -1,0 +1,394 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA85603925650D2C00817ECC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA85603825650D2C00817ECC /* main.m */; };
+		EA85604A256517AE00817ECC /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = EA856046256517AE00817ECC /* NSDictionary+Extension.m */; };
+		EA85604B256517AE00817ECC /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = EA856049256517AE00817ECC /* NSArray+Extension.m */; };
+		EA8560522565185600817ECC /* LYBFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8560512565185600817ECC /* LYBFileTools.m */; };
+		EA8560582565191C00817ECC /* LYBPrintTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8560572565191C00817ECC /* LYBPrintTools.m */; };
+		EA85607F25652A3600817ECC /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA85607E25652A3600817ECC /* XMLReader.m */; };
+		EA85608525652E9A00817ECC /* LYBImageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = EA85608425652E9A00817ECC /* LYBImageTools.m */; };
+		EA85608A25652F0C00817ECC /* NSImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = EA85608825652F0C00817ECC /* NSImage+Extension.m */; };
+		EA85608E256532B700817ECC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = EA85608D256532B700817ECC /* NSDate+Extension.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EA85603325650D2C00817ECC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EA3D416A256E646C0011F89D /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		EA85603525650D2C00817ECC /* lybtools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lybtools; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA85603825650D2C00817ECC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA856046256517AE00817ECC /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
+		EA856047256517AE00817ECC /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
+		EA856048256517AE00817ECC /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
+		EA856049256517AE00817ECC /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
+		EA8560502565185600817ECC /* LYBFileTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBFileTools.h; sourceTree = "<group>"; };
+		EA8560512565185600817ECC /* LYBFileTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBFileTools.m; sourceTree = "<group>"; };
+		EA8560562565191C00817ECC /* LYBPrintTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBPrintTools.h; sourceTree = "<group>"; };
+		EA8560572565191C00817ECC /* LYBPrintTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBPrintTools.m; sourceTree = "<group>"; };
+		EA85607D25652A3500817ECC /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		EA85607E25652A3600817ECC /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		EA85608325652E9A00817ECC /* LYBImageTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYBImageTools.h; sourceTree = "<group>"; };
+		EA85608425652E9A00817ECC /* LYBImageTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYBImageTools.m; sourceTree = "<group>"; };
+		EA85608825652F0C00817ECC /* NSImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Extension.m"; sourceTree = "<group>"; };
+		EA85608925652F0C00817ECC /* NSImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Extension.h"; sourceTree = "<group>"; };
+		EA85608C256532B700817ECC /* NSDate+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		EA85608D256532B700817ECC /* NSDate+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA85603225650D2C00817ECC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA3D4166256E62FA0011F89D /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D416A256E646C0011F89D /* Macro.h */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		EA3D4170256E72220011F89D /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				EA8560562565191C00817ECC /* LYBPrintTools.h */,
+				EA8560572565191C00817ECC /* LYBPrintTools.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		EA85602C25650D2C00817ECC = {
+			isa = PBXGroup;
+			children = (
+				EA85603725650D2C00817ECC /* lybtools */,
+				EA85603625650D2C00817ECC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA85603625650D2C00817ECC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA85603525650D2C00817ECC /* lybtools */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA85603725650D2C00817ECC /* lybtools */ = {
+			isa = PBXGroup;
+			children = (
+				EA85603825650D2C00817ECC /* main.m */,
+				EA3D4166256E62FA0011F89D /* Macro */,
+				EA8560552565190A00817ECC /* General */,
+				EA85604D256517F200817ECC /* Moudle */,
+				EA8560402565178900817ECC /* Vendor */,
+			);
+			path = lybtools;
+			sourceTree = "<group>";
+		};
+		EA8560402565178900817ECC /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EA85607D25652A3500817ECC /* XMLReader.h */,
+				EA85607E25652A3600817ECC /* XMLReader.m */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		EA856045256517A000817ECC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				EA856047256517AE00817ECC /* NSArray+Extension.h */,
+				EA856049256517AE00817ECC /* NSArray+Extension.m */,
+				EA856048256517AE00817ECC /* NSDictionary+Extension.h */,
+				EA856046256517AE00817ECC /* NSDictionary+Extension.m */,
+				EA85608925652F0C00817ECC /* NSImage+Extension.h */,
+				EA85608825652F0C00817ECC /* NSImage+Extension.m */,
+				EA85608C256532B700817ECC /* NSDate+Extension.h */,
+				EA85608D256532B700817ECC /* NSDate+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		EA85604D256517F200817ECC /* Moudle */ = {
+			isa = PBXGroup;
+			children = (
+				EA85608225652E8B00817ECC /* Image */,
+				EA85604F2565180000817ECC /* File */,
+			);
+			path = Moudle;
+			sourceTree = "<group>";
+		};
+		EA85604F2565180000817ECC /* File */ = {
+			isa = PBXGroup;
+			children = (
+				EA8560502565185600817ECC /* LYBFileTools.h */,
+				EA8560512565185600817ECC /* LYBFileTools.m */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		EA8560552565190A00817ECC /* General */ = {
+			isa = PBXGroup;
+			children = (
+				EA3D4170256E72220011F89D /* Tools */,
+				EA856045256517A000817ECC /* Category */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		EA85608225652E8B00817ECC /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				EA85608325652E9A00817ECC /* LYBImageTools.h */,
+				EA85608425652E9A00817ECC /* LYBImageTools.m */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA85603425650D2C00817ECC /* lybtools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA85603C25650D2C00817ECC /* Build configuration list for PBXNativeTarget "lybtools" */;
+			buildPhases = (
+				EA85603125650D2C00817ECC /* Sources */,
+				EA85603225650D2C00817ECC /* Frameworks */,
+				EA85603325650D2C00817ECC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lybtools;
+			productName = ybtools;
+			productReference = EA85603525650D2C00817ECC /* lybtools */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA85602D25650D2C00817ECC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LYB;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					EA85603425650D2C00817ECC = {
+						CreatedOnToolsVersion = 12.1;
+					};
+				};
+			};
+			buildConfigurationList = EA85603025650D2C00817ECC /* Build configuration list for PBXProject "lybtools" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA85602C25650D2C00817ECC;
+			productRefGroup = EA85603625650D2C00817ECC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA85603425650D2C00817ECC /* lybtools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA85603125650D2C00817ECC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA85608525652E9A00817ECC /* LYBImageTools.m in Sources */,
+				EA8560522565185600817ECC /* LYBFileTools.m in Sources */,
+				EA85608A25652F0C00817ECC /* NSImage+Extension.m in Sources */,
+				EA85603925650D2C00817ECC /* main.m in Sources */,
+				EA8560582565191C00817ECC /* LYBPrintTools.m in Sources */,
+				EA85604B256517AE00817ECC /* NSArray+Extension.m in Sources */,
+				EA85607F25652A3600817ECC /* XMLReader.m in Sources */,
+				EA85604A256517AE00817ECC /* NSDictionary+Extension.m in Sources */,
+				EA85608E256532B700817ECC /* NSDate+Extension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EA85603A25650D2C00817ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EA85603B25650D2C00817ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EA85603D25650D2C00817ECC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA85603E25650D2C00817ECC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA85603025650D2C00817ECC /* Build configuration list for PBXProject "lybtools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA85603A25650D2C00817ECC /* Debug */,
+				EA85603B25650D2C00817ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA85603C25650D2C00817ECC /* Build configuration list for PBXNativeTarget "lybtools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA85603D25650D2C00817ECC /* Debug */,
+				EA85603E25650D2C00817ECC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA85602D25650D2C00817ECC /* Project object */;
+}
