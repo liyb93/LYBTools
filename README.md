@@ -1,9 +1,10 @@
 # LYBTools
+
 Mac端命令行工具
 
 ## 功能预览
 
-![preview](https://raw.githubusercontent.com/liyb93/LYBTools/master/preview.png)
+![preview](https://raw.githubusercontent.com/liyb93/LYBTools/main/preview.png)
 
 ## 功能
 
