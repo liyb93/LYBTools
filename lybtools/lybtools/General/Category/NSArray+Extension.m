@@ -17,7 +17,7 @@
         if ([data isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dict = (NSDictionary *)data;
             [arr replaceObjectAtIndex:idx withObject:[dict removeNull]];
-        }else {
+        } else if ([data isKindOfClass:[NSArray class]]) {
             NSArray *array = (NSArray *)data;
             [arr replaceObjectAtIndex:idx withObject:[array removeNull]];
         }

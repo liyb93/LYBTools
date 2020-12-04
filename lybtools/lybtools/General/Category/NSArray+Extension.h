@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (Extension)
+// 去除空值
 - (NSArray *)removeNull;
 - (NSString * _Nullable)toJson;
 @end

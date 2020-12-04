@@ -8,7 +8,7 @@
 #ifndef Macro_h
 #define Macro_h
 
-#define LYB_Version @"0.0.2"
+#define LYB_Version @"0.0.3"
 
 #define LYB_Mark_Icon @{@"size": @"1024", @"scale": @"1", @"idiom": @"ios-marketing", @"filename": @""}
 #define LYB_Iphone_Icon @[@{@"size": @"40", @"scale": @"2", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"60", @"scale": @"3", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"58", @"scale": @"2", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"87", @"scale": @"3", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"80", @"scale": @"2", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"120", @"scale": @"3", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"120", @"scale": @"2", @"idiom": @"iphone", @"filename": @""}, @{@"size": @"180", @"scale": @"3", @"idiom": @"iphone", @"filename": @""}]

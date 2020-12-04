@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (Extension)
+// 去除空值
 - (NSDictionary *)removeNull;
 - (NSString * _Nullable)toJson;
 @end
