@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 去除空值
 - (NSArray *)removeNull;
 - (NSString * _Nullable)toJson;
+- (NSArray *)map:(id  _Nonnull (^ _Nonnull)(id _Nonnull, NSUInteger))block;
+- (NSArray*)filterMap:(BOOL(^ _Nonnull)(id _Nonnull, NSUInteger))block;
 @end
 
 NS_ASSUME_NONNULL_END

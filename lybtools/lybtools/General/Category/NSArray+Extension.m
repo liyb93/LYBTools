@@ -30,4 +30,22 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&parseError];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
+
+- (NSArray *)map:(id  _Nonnull (^)(id _Nonnull, NSUInteger))block {
+    NSMutableArray *resultArr = [NSMutableArray arrayWithCapacity:self.count];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [resultArr addObject:block(obj, idx)];
+    }];
+    return resultArr;
+}
+
+- (NSArray*)filterMap:(BOOL(^)(id _Nonnull, NSUInteger))block {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (block(obj,idx)) {
+            [array addObject:obj];
+        }
+    }];
+    return array;
+}
 @end

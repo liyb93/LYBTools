@@ -9,6 +9,7 @@
 #import "LYBPrintTools.h"
 #import "LYBFileTools.h"
 #import "LYBImageTools.h"
+#import "NSString+Extension.h"
 #import "Macro.h"
 
 static NSString *LYBPrintColorCount;
@@ -39,7 +40,7 @@ int main(int argc, const char * argv[]) {
             print_usage();
         } else if ([firstArg isEqualToString:@"-version"] || [firstArg isEqualToString:@"-v"]) {    // 版本
             [LYBPrintTools print:@"%@\n", LYB_Version];
-        } else if ([firstArg isEqualToString:@"-plist"]) { // 转plist
+        } else if ([firstArg isEqualToString:@"-plist"] || [firstArg isEqualToString:@"-p"]) { // 转plist
             if (argc == 4) {    // 4个参数
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 NSString *outPath = [NSString stringWithUTF8String:argv[3]];
@@ -48,10 +49,18 @@ int main(int argc, const char * argv[]) {
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
+            } else if (argc == 3) { // 无输出路径
+                NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
+                if (inputPath) {
+                    NSString *outPath = [inputPath stringByDeletingLastPathComponent];
+                    [LYBFileTools plistWithInputPath:inputPath outPath:outPath];
+                } else {
+                    [LYBPrintTools printError:@"参数错误"];
+                }
             } else {
                 [LYBPrintTools printError:@"参数错误"];
             }
-        } else if ([firstArg isEqualToString:@"-json"]) {  // 转json
+        } else if ([firstArg isEqualToString:@"-json"] || [firstArg isEqualToString:@"-j"]) {  // 转json
             if (argc == 4) {    // 4个参数
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 NSString *outPath = [NSString stringWithUTF8String:argv[3]];
@@ -60,10 +69,18 @@ int main(int argc, const char * argv[]) {
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
+            } else if (argc == 3) { // 无输出路径
+                NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
+                if (inputPath) {
+                    NSString *outPath = [inputPath stringByDeletingLastPathComponent];
+                    [LYBFileTools plistWithInputPath:inputPath outPath:outPath];
+                } else {
+                    [LYBPrintTools printError:@"参数错误"];
+                }
             } else {
                 [LYBPrintTools printError:@"参数错误"];
             }
-        } else if ([firstArg isEqualToString:@"-xml"]) {  // 转xml
+        } else if ([firstArg isEqualToString:@"-xml"] || [firstArg isEqualToString:@"-x"]) {  // 转xml
             if (argc == 4) {    // 4个参数
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 NSString *outPath = [NSString stringWithUTF8String:argv[3]];
@@ -72,10 +89,18 @@ int main(int argc, const char * argv[]) {
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
+            } else if (argc == 3) { // 无输出路径
+                NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
+                if (inputPath) {
+                    NSString *outPath = [inputPath stringByDeletingLastPathComponent];
+                    [LYBFileTools plistWithInputPath:inputPath outPath:outPath];
+                } else {
+                    [LYBPrintTools printError:@"参数错误"];
+                }
             } else {
                 [LYBPrintTools printError:@"参数错误"];
             }
-        } else if ([firstArg isEqualToString:@"-imgcut"]) {  // 图片切圆角
+        } else if ([firstArg isEqualToString:@"-imgcut"] || [firstArg isEqualToString:@"-ic"]) {  // 图片切圆角
             if (argc == 5) {    // 5个参数
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 NSString *outPath = [NSString stringWithUTF8String:argv[3]];
@@ -86,29 +111,47 @@ int main(int argc, const char * argv[]) {
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
+            } else if (argc == 4) { // 无输出路径
+                NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
+                NSString *size = [NSString stringWithUTF8String:argv[3]];
+                if (inputPath && size) {
+                    CGFloat radius = [size doubleValue];
+                    NSString *outPath = [inputPath stringByDeletingLastPathComponent];
+                    [LYBImageTools imageToolsWithInputPath:inputPath outPath:outPath radius:radius];
+                } else {
+                    [LYBPrintTools printError:@"参数错误"];
+                }
             } else {
                 [LYBPrintTools printError:@"参数错误"];
             }
-        } else if ([firstArg isEqualToString:@"-icon"]) {   // app图标
+        } else if ([firstArg isEqualToString:@"-icon"] || [firstArg isEqualToString:@"-i"]) {   // app图标
             if (argc == 5) {    // 带app类型
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 NSString *outPath = [NSString stringWithUTF8String:argv[3]];
                 NSString *iconType = [NSString stringWithUTF8String:argv[4]];
-                NSInteger type = [iconType integerValue];
-                if (type >= 0 && type <= 6) {
-                    if (inputPath && outPath) {
-                        [LYBImageTools imageToolsMakeIconWith:inputPath outPath:outPath iconType:type];
-                    } else {
-                        [LYBPrintTools printError:@"参数错误"];
+                if (inputPath && outPath && iconType) {
+                    [LYBImageTools imageToolsMakeIconWith:inputPath outPath:outPath types:[NSString stringWithFormat:@"[%@]", iconType]];
+                } else {
+                    [LYBPrintTools printError:@"参数错误"];
+                }
+            } else if (argc == 4) { // 不带输出路径或app类型
+                NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
+                NSString *argv4 = [NSString stringWithUTF8String:argv[3]];
+                if (argv4 && inputPath) {
+                    if ([argv4 containsString:@"/"]) {  // 输出路径
+                        [LYBImageTools imageToolsMakeIconWith:inputPath outPath:argv4 types:@"[0]"];
+                    } else {    // 类型
+                        NSString *outPath = [inputPath stringByDeletingLastPathComponent];
+                        [LYBImageTools imageToolsMakeIconWith:inputPath outPath:outPath types:[NSString stringWithFormat:@"[%@]", argv4]];
                     }
                 } else {
-                    [LYBPrintTools printError:@"appType取值范围0~6"];
+                    [LYBPrintTools printError:@"参数错误"];
                 }
-            } else if (argc == 4) { // 不带app类型
+            } else if (argc == 3) { // 不带输出路径和app类型
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
-                NSString *outPath = [NSString stringWithUTF8String:argv[3]];
-                if (inputPath && outPath) {
-                    [LYBImageTools imageToolsMakeIconWith:inputPath outPath:outPath iconType:0];
+                if (inputPath) {
+                    NSString *outPath = [inputPath stringByDeletingLastPathComponent];
+                    [LYBImageTools imageToolsMakeIconWith:inputPath outPath:outPath types:@"[0]"];
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
@@ -122,26 +165,26 @@ int main(int argc, const char * argv[]) {
 
 // 功能列表
 void print_usage() {
-    [LYBPrintTools printColor:LYBPrintColorTip format:@"-plist"];
-    [LYBPrintTools print:@"\t\txml/json转plist\t\t-plist 文件路径 输出路径\n"];
-    
-    [LYBPrintTools printColor:LYBPrintColorTip format:@"-json"];
-    [LYBPrintTools print:@"\t\txml/plist转json\t\t-json 文件路径 输出路径\n"];
-    
-    [LYBPrintTools printColor:LYBPrintColorTip format:@"-xml"];
-    [LYBPrintTools print:@"\t\tjson/plist转xml\t\t-xml 文件路径 输出路径\n"];
-    
-    [LYBPrintTools printColor:LYBPrintColorTip format:@"-imgcut"];
-    [LYBPrintTools print:@"\t\t图片切圆角\t\t-imgcut 文件路径 输出路径 圆角半径\n"];
-    
-    [LYBPrintTools printColor:LYBPrintColorTip format:@"-icon"];
-    [LYBPrintTools print:@"\t\tApp图标生成\t\t-icon 文件路径 输出路径 app类型(默认为0,可不传):\n\t\t\t\t\t0:  只生成iphone\n\t\t\t\t\t1:  只生成ipad\n\t\t\t\t\t2:  只生成mac\n\t\t\t\t\t3:  生成iphone与ipad\n\t\t\t\t\t4:  生成iphone与mac\n\t\t\t\t\t5:  生成ipad与mac\n\t\t\t\t\t6:  生成iphone、ipad与mac\n"];
-    
     [LYBPrintTools printColor:LYBPrintColorTip format:@"-help/-h"];
-    [LYBPrintTools print:@"\t功能列表\t\t-help或-h\n"];
+    [LYBPrintTools print:@"\t功能列表\t\t-help/-h\n"];
     
     [LYBPrintTools printColor:LYBPrintColorTip format:@"-version/-v"];
-    [LYBPrintTools print:@"\t版本号\t\t\t-version或-v\n"];
+    [LYBPrintTools print:@"\t版本号\t\t\t-version/-v\n"];
+    
+    [LYBPrintTools printColor:LYBPrintColorTip format:@"-plist/-p"];
+    [LYBPrintTools print:@"\txml/json转plist\t\t-plist/-p 文件路径 输出路径(可选)\n"];
+    
+    [LYBPrintTools printColor:LYBPrintColorTip format:@"-json/-j"];
+    [LYBPrintTools print:@"\txml/plist转json\t\t-json/-j 文件路径 输出路径(可选)\n"];
+    
+    [LYBPrintTools printColor:LYBPrintColorTip format:@"-xml/-x"];
+    [LYBPrintTools print:@"\t\tjson/plist转xml\t\t-xml/-x 文件路径 输出路径(可选)\n"];
+    
+    [LYBPrintTools printColor:LYBPrintColorTip format:@"-imgcut/-ic"];
+    [LYBPrintTools print:@"\t图片切圆角\t\t-imgcut/-ic 文件路径 输出路径(可选) 圆角半径\n"];
+    
+    [LYBPrintTools printColor:LYBPrintColorTip format:@"-icon/-i"];
+    [LYBPrintTools print:@"\tApp图标生成\t\t-icon/-i 文件路径 输出路径(可选) 图标类型(可选,以英文逗号分隔):\n\t\t\t\t\t0:  iphone\n\t\t\t\t\t1:  ipad\n\t\t\t\t\t2:  mac\n\t\t\t\t\t3:  carplay\n\t\t\t\t\t4:  watch\n\t\t\t\t\t5:  android\n"];
 }
 
 // 颜色配置

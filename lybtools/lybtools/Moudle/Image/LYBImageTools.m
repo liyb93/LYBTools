@@ -9,6 +9,8 @@
 #import "NSImage+Extension.h"
 #import "LYBPrintTools.h"
 #import "NSDate+Extension.h"
+#import "NSArray+Extension.h"
+#import "LYBIconModel.h"
 #import "Macro.h"
 
 
@@ -33,109 +35,96 @@
     }
 }
 
-+ (void)imageToolsMakeIconWith:(NSString *)inputPath outPath:(NSString *)outPath iconType:(NSInteger)iconType {
++ (void)imageToolsMakeIconWith:(NSString *)inputPath outPath:(NSString *)outPath types:(NSString *)types {
     BOOL isDirectory;
     if (![[NSFileManager defaultManager] fileExistsAtPath:outPath isDirectory:&isDirectory] || !isDirectory) {
         [LYBPrintTools printError:@"输出路径错误"];
         return;
     }
+    NSData *data = [types dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *typeArr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    if (error || typeArr.count <= 0) {
+        [LYBPrintTools printError:@"图标类型错误, 如：[1,3,4]"];
+        return;
+    } else {
+        NSArray *sortArr = [typeArr filterMap:^BOOL(NSNumber *number, NSUInteger idx) {
+            return [number integerValue] > 6;
+        }];
+        if (sortArr.count > 0) {
+            [LYBPrintTools printError:@"图标类型错误, 取值范围0~5"];
+            return;
+        }
+    }
     if ([[NSFileManager defaultManager] fileExistsAtPath:inputPath]) {    // 检测是否是文件路径
         NSImage *image = [[NSImage alloc] initWithContentsOfFile:inputPath];
         if (image) {
-            if (iconType == 0) {
-                NSString *folderPath = [self createFolderWithPath:outPath name:@"iOS"];
-                // 添加markIcon
-                NSMutableArray *iphoneIcons = [NSMutableArray arrayWithArray:LYB_Iphone_Icon];
-                [iphoneIcons addObject:LYB_Mark_Icon];
-                BOOL result = [self dealIconsWithImage:image icons:iphoneIcons outPath:folderPath];
-                if (result) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else {
-                    [LYBPrintTools printError:@"icon制作失败"];
-                }
-            } else if (iconType == 1) {
-                NSString *folderPath = [self createFolderWithPath:outPath name:@"iOS"];
-                // 添加markIcon
-                NSMutableArray *iphoneIcons = [NSMutableArray arrayWithArray:LYB_Ipad_Icon];
-                [iphoneIcons addObject:LYB_Mark_Icon];
-                BOOL result = [self dealIconsWithImage:image icons:iphoneIcons outPath:folderPath];
-                if (result) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else {
-                    [LYBPrintTools printError:@"icon制作失败"];
-                }
-            } else if (iconType == 2) {
-                NSString *folderPath = [self createFolderWithPath:outPath name:@"Mac"];
-                BOOL result = [self dealIconsWithImage:image icons:LYB_Mac_Icon outPath:folderPath];
-                if (result) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else {
-                    [LYBPrintTools printError:@"icon制作失败"];
-                }
-            } else if (iconType == 3) {
-                NSString *folderPath = [self createFolderWithPath:outPath name:@"iOS"];
-                // 添加markIcon
-                NSMutableArray *iphoneIcons = [NSMutableArray arrayWithArray:LYB_Iphone_Icon];
-                [iphoneIcons addObjectsFromArray:LYB_Ipad_Icon];
-                [iphoneIcons addObject:LYB_Mark_Icon];
-                BOOL result = [self dealIconsWithImage:image icons:iphoneIcons outPath:folderPath];
-                if (result) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else {
-                    [LYBPrintTools printError:@"icon制作失败"];
-                }
-            } else if (iconType == 4) {
-                NSString *iosPath = [self createFolderWithPath:outPath name:@"iOS"];
-                NSMutableArray *iphoneIcons = [NSMutableArray arrayWithArray:LYB_Iphone_Icon];
-                [iphoneIcons addObject:LYB_Mark_Icon];
-                BOOL iosResult = [self dealIconsWithImage:image icons:iphoneIcons outPath:iosPath];
-                NSString *macPath = [self createFolderWithPath:outPath name:@"Mac"];
-                BOOL macResult = [self dealIconsWithImage:image icons:LYB_Mac_Icon outPath:macPath];
-                if (iosResult && macResult) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else if (iosResult && !macResult) {
-                    [LYBPrintTools printError:@"mac icon制作失败"];
-                } else if (macResult && !iosResult) {
-                    [LYBPrintTools printError:@"ios icon制作失败"];
-                } else {
-                    [LYBPrintTools printError:@"ios、mac icon制作失败"];
-                }
-            } else if (iconType == 5) {
-                NSString *iosPath = [self createFolderWithPath:outPath name:@"iOS"];
-                NSMutableArray *iphoneIcons = [NSMutableArray arrayWithArray:LYB_Ipad_Icon];
-                [iphoneIcons addObject:LYB_Mark_Icon];
-                BOOL iosResult = [self dealIconsWithImage:image icons:iphoneIcons outPath:iosPath];
-                NSString *macPath = [self createFolderWithPath:outPath name:@"Mac"];
-                BOOL macResult = [self dealIconsWithImage:image icons:LYB_Mac_Icon outPath:macPath];
-                if (iosResult && macResult) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else if (iosResult && !macResult) {
-                    [LYBPrintTools printError:@"mac icon制作失败"];
-                } else if (macResult && !iosResult) {
-                    [LYBPrintTools printError:@"ios icon制作失败"];
-                } else {
-                    [LYBPrintTools printError:@"ios、mac icon制作失败"];
-                }
-            } else if (iconType == 6) {
-                NSString *iosPath = [self createFolderWithPath:outPath name:@"iOS"];
-                NSMutableArray *iphoneIcons = [NSMutableArray arrayWithArray:LYB_Iphone_Icon];
-                [iphoneIcons addObjectsFromArray:LYB_Ipad_Icon];
-                [iphoneIcons addObject:LYB_Mark_Icon];
-                BOOL iosResult = [self dealIconsWithImage:image icons:iphoneIcons outPath:iosPath];
-                NSString *macPath = [self createFolderWithPath:outPath name:@"Mac"];
-                BOOL macResult = [self dealIconsWithImage:image icons:LYB_Mac_Icon outPath:macPath];
-                if (iosResult && macResult) {
-                    [LYBPrintTools printSuccess:@"icon制作成功"];
-                } else if (iosResult && !macResult) {
-                    [LYBPrintTools printError:@"mac icon制作失败"];
-                } else if (macResult && !iosResult) {
-                    [LYBPrintTools printError:@"ios icon制作失败"];
-                } else {
-                    [LYBPrintTools printError:@"ios、mac icon制作失败"];
-                }
-            } else {
-                [LYBPrintTools printError:@"图标类型错误, 请看详细使用方式"];
+            NSError *error;
+            id data = [NSJSONSerialization JSONObjectWithData:[LYB_Icon_Data dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
+            if (error) {
+                [LYBPrintTools printError:@"图标类型解析错误，请反馈作者修复"];
+                return;
             }
+            LYBIconModel *iconModel = [LYBIconModel mj_objectWithKeyValues:data];
+            NSMutableDictionary *config = [NSMutableDictionary dictionaryWithDictionary:@{@"images":@[],@"info":@{@"version":@"1",@"author":@"xcode"}}];
+            // 创建存储路径
+            outPath = [outPath stringByAppendingString:@"/AppIcon"];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:outPath]) {
+                [[NSFileManager defaultManager] removeItemAtPath:outPath error:nil];
+            }
+            [[NSFileManager defaultManager] createDirectoryAtPath:outPath withIntermediateDirectories:YES attributes:nil error:nil];
+            
+            // 创建图标
+            for (NSNumber *number in typeArr) {
+                NSInteger type = [number integerValue];
+                NSArray *models;
+                if (type == 0) {    // iphone、
+                    models = iconModel.iphone;
+                } else if (type == 1) { // ipad
+                    models = iconModel.ipad;
+                } else if (type == 2) { // mac
+                    models = iconModel.mac;
+                } else if (type == 3) { // carplay
+                    models = iconModel.carplay;
+                } else if (type == 4) { // watch
+                    models = iconModel.watch;
+                }
+                NSArray *imageArr = [self cropIosIconWithImage:image outPath:outPath models:models];
+                NSMutableArray *images = [NSMutableArray arrayWithArray:config[@"images"]];
+                [images addObjectsFromArray:imageArr];
+                config[@"images"] = images;
+                
+                if (!config && type != 5) {
+                    [LYBPrintTools printError:@"icon制作失败"];
+                    break;
+                }
+            }
+            // 创建marketing
+            if ([typeArr containsObject:@(0)] || [typeArr containsObject:@(1)] || [typeArr containsObject:@(2)] || [typeArr containsObject:@(3)]) { // iphone || ipad || carplay || mac || watch
+                if ([typeArr containsObject:@(4)]) { // watch
+                    LYBIconIosModel *model = iconModel.marketing.watch;
+                    NSArray *imageArr = [self cropIosIconWithImage:image outPath:outPath models:@[model]];
+                    NSMutableArray *images = [NSMutableArray arrayWithArray:config[@"images"]];
+                    [images addObjectsFromArray:imageArr];
+                    config[@"images"] = images;
+                }
+                LYBIconIosModel *model = iconModel.marketing.iphone;
+                NSArray *imageArr = [self cropIosIconWithImage:image outPath:outPath models:@[model]];
+                NSMutableArray *images = [NSMutableArray arrayWithArray:config[@"images"]];
+                [images addObjectsFromArray:imageArr];
+                config[@"images"] = images;
+            }
+            // 创建配置文件并保存成json文件
+            if ([config[@"images"] count] > 0) {
+                NSString *iconPath = [self createIosWithPath:outPath];
+                [self saveIconConfigFileWithData:config path:iconPath];
+            }
+            
+            // 创建android图标
+            if ([typeArr containsObject:@(5)]) {
+                [self cropAndroidIconWithImage:image outPath:outPath models:iconModel.android];
+            }
+            [LYBPrintTools printSuccess:@"图标生成完成"];
         } else {
             [LYBPrintTools printError:@"输入路径错误"];
         }
@@ -144,7 +133,7 @@
     }
 }
 
-// 保存图片
+/// 保存图片
 + (BOOL)saveImage:(NSImage *)image outPath:(NSString *)outPath {
     BOOL isDirectory;
     if ([[NSFileManager defaultManager] fileExistsAtPath:outPath isDirectory:&isDirectory]) {
@@ -166,37 +155,63 @@
     }
 }
 
-+ (BOOL)dealIconsWithImage:(NSImage *)image icons:(NSArray *)icons outPath:(NSString *)path {
+/// 裁剪ios图标
+/// @param image 原图
+/// @param outPath 输出路径
+/// @param models 图标类型模型数组
+/// @return 返回裁剪后的图片信息
++ (NSArray *)cropIosIconWithImage:(NSImage *)image outPath:(NSString *)outPath models:(NSArray *)models {
+    NSString *iconPath = [self createIosWithPath:outPath];
     NSMutableArray *arr = [NSMutableArray array];
-    for (NSDictionary *dict in icons) {
-        NSInteger size = [dict[@"size"] integerValue];
-        NSInteger scale = [dict[@"scale"] integerValue];
-        NSString *idiom = dict[@"idiom"];
-        NSImage *img = [image scaleToSize:CGSizeMake(size/2.0, size/2.0)];
-        NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:dict];
-        NSString *sizeString;
-        if (size % scale == 0) {    // 没有小数
-            sizeString = [NSString stringWithFormat:@"%zix%zi", size / scale, size / scale];
-        } else {
-            CGFloat s = (CGFloat)size / scale;
-            sizeString = [NSString stringWithFormat:@"%.1fx%.1f", s, s];
-        }
+    for (LYBIconIosModel *model in models) {
+        NSInteger scale = [model.scale integerValue];
+        CGFloat size = [model.size floatValue];
+        CGSize imgSize = CGSizeMake(size * scale / 2.0, size * scale / 2.0);
+        NSImage *img = [image scaleToSize:imgSize];
         NSString *scaleString = [NSString stringWithFormat:@"%zix", scale];
-        NSString *filename = [NSString stringWithFormat:@"%@App_%@@%@.png", idiom, sizeString, scaleString];
-        data[@"size"] = sizeString;
-        data[@"scale"] = scaleString;
-        data[@"filename"] = filename;
-        [arr addObject:data];
-        BOOL result = [self saveImage:img outPath:[NSString stringWithFormat:@"%@/%@", path, filename]];
+        // 向上取整
+        int sizeCount = (int)ceil(size);
+        NSString *sizeString;
+        if (size < sizeCount) {
+            sizeString = [NSString stringWithFormat:@"%.1fx%.1f", size, size];
+        } else {
+            sizeString = [NSString stringWithFormat:@"%.fx%.f", size, size];
+        }
+        NSString *filename = [NSString stringWithFormat:@"%@_%@@%@.png", model.idiom, sizeString, scaleString];
+        BOOL result = [self saveImage:img outPath:[NSString stringWithFormat:@"%@/%@", iconPath, filename]];
         if (!result) {
             [LYBPrintTools printError:@"%@图标生成失败", filename];
+        } else {
+            model.filename = filename;
+            model.size = sizeString;
+            model.scale = scaleString;
+            [arr addObject:model.mj_JSONObject];
         }
     }
-    // 拼接配置文件
-    NSMutableDictionary *config = [NSMutableDictionary dictionary];
-    config[@"images"] = [arr copy];
-    config[@"info"] = @{@"author": @"xcode", @"version": @"1"};
-    return [self saveIconConfigFileWithData:config path:path];
+    return arr;
+}
+
+/// 裁剪android图标
+/// @param image 原图
+/// @param models 图标类型模型数组
++ (void)cropAndroidIconWithImage:(NSImage *)image outPath:(NSString *)outPath models:(NSArray *)models {
+    outPath = [self createAndroidWithPath:outPath];
+    for (LYBIconAndroidModel *model in models) {
+        NSString *path;
+        if (model.folder) {
+            NSString *folder = [outPath stringByAppendingFormat:@"%@", model.folder];
+            if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
+                [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            path = [folder stringByAppendingFormat:@"/%@.png", model.filename];
+        } else {
+            path = [outPath stringByAppendingFormat:@"%@.png", model.filename];
+        }
+        CGFloat size = [model.size floatValue];
+        CGSize imgSize = CGSizeMake(size / 2.0, size / 2.0);
+        NSImage *img = [image scaleToSize:imgSize];
+        [self saveImage:img outPath:path];
+    }
 }
 
 /// 存储icon配置文件
@@ -214,9 +229,18 @@
     return [json writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
-// 创建icon存储路径
-+ (NSString *)createFolderWithPath:(NSString *)path name:(NSString *)name {
-    path = [path stringByAppendingFormat:@"/%@/AppIcon.appiconset/", name];
+/// 创建ios/macos icon存储路径
++ (NSString *)createIosWithPath:(NSString *)path {
+    path = [path stringByAppendingString:@"/AppIcon.appiconset/"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return path;
+}
+
+/// 创建android icon存储路径
++ (NSString *)createAndroidWithPath:(NSString *)path {
+    path = [path stringByAppendingString:@"/Android/"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     }

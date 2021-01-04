@@ -11,21 +11,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LYBImageTools : NSObject
 
+/// 圆角图片
+/// @param inputPath 图片路径
+/// @param outPath 输出路径
+/// @param radius 圆角半径
 + (void)imageToolsWithInputPath:(NSString *)inputPath outPath:(NSString *)outPath radius:(CGFloat)radius;
 
 /// 图标生成
 /// @param inputPath 目标图片路径
 /// @param outPath 输出路径
-/// @param iconType 图标类型
-/// iconType :  默认为0
-/// 0:  只生成iphone
-/// 1:  只生成ipad
-/// 2:  只生成mac
-/// 3:  生成iphone与ipad
-/// 4:  生成iphone与mac
-/// 5:  生成ipad与mac
-/// 6:  生成iphone、ipad与mac
-+ (void)imageToolsMakeIconWith:(NSString *)inputPath outPath:(NSString *)outPath iconType:(NSInteger)iconType;
+/// @param types 图标类型
+/// types:  默认为0
+/// 0:  iphone
+/// 1:  ipad
+/// 2:  mac
+/// 3:  carplay
+/// 4:  watch
+/// 5:  Android
++ (void)imageToolsMakeIconWith:(NSString *)inputPath outPath:(NSString *)outPath types:(NSString*)types;
 
 @end
 
