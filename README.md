@@ -25,19 +25,19 @@ Mac端命令行工具
 - xml/plist转json
 
   ```shell
-  $lybtools -json 文件路径 输出路径
+  $lybtools -json 文件路径 输出路径(可选)
   ```
 
 - json/plist转xml
 
   ```shell
-  $lybtools -xml 文件路径 输出路径
+  $lybtools -xml 文件路径 输出路径(可选)
   ```
 
 - 图片切圆角
 
   ```shell
-  $lybtools -imgcut 文件路径 输出路径 圆角半径
+  $lybtools -imgcut 文件路径 输出路径(可选) 圆角半径
   ```
 
 - App图标生成
