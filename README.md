@@ -19,7 +19,7 @@ Mac端命令行工具
 - xml/json转plist
 
   ```shell
-  $lybtools -plist 文件路径 输出路径
+  $lybtools -plist 文件路径 输出路径(可选)
   ```
 
 - xml/plist转json
@@ -44,15 +44,14 @@ Mac端命令行工具
 
   ```shell
   /*
-  	app类型(默认为0,可不传)
-  	0:  只生成iphone
-  	1:  只生成ipad
-  	2:  只生成mac
-  	3:  生成iphone与ipad
-  	4:  生成iphone与mac
-  	5:  生成ipad与mac
-  	6:  生成iphone、ipad与mac
+  	图标类型(默认为0,可不传,以英文逗号","分隔)
+  	0:  iphone
+  	1:  ipad
+  	2:  mac
+  	3:  carplay
+  	4:  watch
+  	5:  android
   */
-  $lybtools -icon 文件路径 输出路径 app类型
+  $lybtools -icon 文件路径 输出路径 图标类型
   ```
 
