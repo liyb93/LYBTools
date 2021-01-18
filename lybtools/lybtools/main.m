@@ -73,7 +73,7 @@ int main(int argc, const char * argv[]) {
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 if (inputPath) {
                     NSString *outPath = [inputPath stringByDeletingLastPathComponent];
-                    [LYBFileTools plistWithInputPath:inputPath outPath:outPath];
+                    [LYBFileTools jsonWithInputPath:inputPath outPath:outPath];
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
@@ -93,7 +93,7 @@ int main(int argc, const char * argv[]) {
                 NSString *inputPath = [NSString stringWithUTF8String:argv[2]];
                 if (inputPath) {
                     NSString *outPath = [inputPath stringByDeletingLastPathComponent];
-                    [LYBFileTools plistWithInputPath:inputPath outPath:outPath];
+                    [LYBFileTools xmlWithInputPath:inputPath outPath:outPath];
                 } else {
                     [LYBPrintTools printError:@"参数错误"];
                 }
